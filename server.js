@@ -71,10 +71,10 @@ const MuseumSchema = new Schema({
   city: String
 });
 
-const Model = mongoose.model;
+
 
 //Insert into newcollections
-const Museum = Model('museums', MuseumSchema); //first parameter is the name of the collection
+// const Museum = Model('museums', MuseumSchema); //first parameter is the name of the collection
 // const newMuseum = new Museum({museum:'Louvre', city:'Paris'})
 // newMuseum.save((err,result)=>{
 //   if (err) console.log(err);
@@ -89,11 +89,11 @@ const Museum = Model('museums', MuseumSchema); //first parameter is the name of 
 //   });
 // })
 
-// Select from newcollections
-Museum.find((err, docs) => {
-  // docs.forEach
-  console.log("find:",docs)
-});
+// // Select from newcollections
+// Museum.find((err, docs) => {
+//   // docs.forEach
+//   console.log("find:",docs)
+// });
 
 
 
