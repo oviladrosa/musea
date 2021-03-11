@@ -30,8 +30,10 @@ router.get('/museums', (req, res) => {
   Museum.find((err, docs) => {
     // docs.forEach
     console.log("find:",docs);
-    res.render('museums', {museums: docs});
+    // res.render('museums', {museums: docs});
+    res.json({museums: docs});
   });
 })
+
 
 module.exports = router
