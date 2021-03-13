@@ -20,10 +20,30 @@ const MuseumSchema = new Schema({
   city: String,
   country: String,
   location: Array,
-  exhibitions: Array
+  exhibitions: Array,
+  descriptions: Object
 })
 const Model = mongoose.model
 const Museum = Model('museums', MuseumSchema) // first parameter is the name of the collection
+
+const ExpositionSchema = new Schema({
+  _id: ObjectId,
+  name: String,
+  room: String,
+  descriptions: Object,
+  works: Array
+})
+const Exposition = Model('exhibitions', ExpositionSchema)
+
+const WorkSchema = new Schema({
+  _id: ObjectId,
+  title: String,
+  author: String,
+  descriptions: Object,
+  score: Number,
+  type: String
+})
+const Work = Model('works', WorkSchema)
 
 router.get('/museums', (req, res) => {
   // eslint-disable-next-line array-callback-return
@@ -33,12 +53,30 @@ router.get('/museums', (req, res) => {
   })
 })
 
-router.get('/museums/:id', (req, res) => {
-  const id = req.params.id
+router.get('/museums/:museumId', (req, res) => {
+  const id = req.params.museumId
   // eslint-disable-next-line array-callback-return
   Museum.findById(id, (err, doc) => {
     if (err) console.log(err)
     res.json({ museum: doc })
+  })
+})
+
+router.get('/museums/:museumId/:expositionId', (req, res) => {
+  const id = req.params.expositionId
+  // eslint-disable-next-line array-callback-return
+  Exposition.findById(id, (err, doc) => {
+    if (err) console.log(err)
+    res.json({ exposition: doc })
+  })
+})
+
+router.get('/museums/:museumId/:expositionId/:workId', (req, res) => {
+  const id = req.params.workId
+  // eslint-disable-next-line array-callback-return
+  Work.findById(id, (err, doc) => {
+    if (err) console.log(err)
+    res.json({ work: doc })
   })
 })
 
