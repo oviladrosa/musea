@@ -20,7 +20,7 @@ const MuseumSchema = new Schema({
   city: String,
   country: String,
   location: Array,
-  exhibitions: Array,
+  expositions: Array,
   descriptions: Object
 })
 const Model = mongoose.model
@@ -33,7 +33,7 @@ const ExpositionSchema = new Schema({
   descriptions: Object,
   works: Array
 })
-const Exposition = Model('exhibitions', ExpositionSchema)
+const Exposition = Model('expositions', ExpositionSchema)
 
 const WorkSchema = new Schema({
   _id: ObjectId,
