@@ -33,4 +33,13 @@ router.get('/museums', (req, res) => {
   })
 })
 
+router.get('/museums/:id', (req, res) => {
+  const id = req.params.id
+  // eslint-disable-next-line array-callback-return
+  Museum.findById(id, (err, doc) => {
+    if (err) console.log(err)
+    res.json({ museum: doc })
+  })
+})
+
 module.exports = router
