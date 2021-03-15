@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true }) // word after the slash is the name of the database
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
 const db = mongoose.connection
 db.on('error', error => console.error(error))
-db.once('open', () => console.log('Connected to Mongoose'))
+// db.once('open', () => console.log('Connected to Mongoose'))
 
 router.get('/', (req, res) => {
   res.render('index')
