@@ -71,8 +71,8 @@ router.get('/museums/:museumId', (req, res) => {
     }
     for (let i = 0; i < doc.expositions.length; i++) {
       expoId = doc.expositions[i]
-      Exposition.findById(expoId, (err, expo) => {
-        if (err) console.log(err)
+      Exposition.findById(expoId, (error, expo) => {
+        if (error) console.log(error)
         result.expositions.push(expo)
         if (i === result.expositions.length - 1) res.json({ museum: result })
       })
@@ -95,8 +95,8 @@ router.get('/museums/:museumId/:expositionId', (req, res) => {
     }
     for (let i = 0; i < doc.works.length; i++) {
       artworkId = doc.works[i]
-      Work.findById(artworkId, (err, work) => {
-        if (err) console.log(err)
+      Work.findById(artworkId, (error, work) => {
+        if (error) console.log(error)
         result.works.push(work)
         if (i === result.works.length - 1) res.json({ museum: result })
       })
