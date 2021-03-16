@@ -3,6 +3,7 @@ const mocha = require('mocha')
 const describe = mocha.describe
 const it = mocha.it
 
+// eslint-disable-next-line no-unused-vars
 const app = require('../server.js')
 request = request('http://localhost:3000')
 
