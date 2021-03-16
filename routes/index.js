@@ -21,7 +21,8 @@ const MuseumSchema = new Schema({
   country: String,
   location: Array,
   expositions: Array,
-  descriptions: Object
+  descriptions: Object,
+  image: String
 })
 const Model = mongoose.model
 const Museum = Model('museums', MuseumSchema) // first parameter is the name of the collection
@@ -31,7 +32,8 @@ const ExpositionSchema = new Schema({
   name: String,
   room: String,
   descriptions: Object,
-  works: Array
+  works: Array,
+  image: String
 })
 const Exposition = Model('expositions', ExpositionSchema)
 
@@ -41,7 +43,8 @@ const WorkSchema = new Schema({
   author: String,
   descriptions: Object,
   score: Number,
-  type: String
+  type: String,
+  image: String
 })
 const Work = Model('artworks', WorkSchema)
 
@@ -67,7 +70,8 @@ router.get('/museums/:museumId', (req, res) => {
       country: doc.country,
       location: doc.location,
       expositions: [],
-      descriptions: doc.descriptions
+      descriptions: doc.descriptions,
+      image: doc.image
     }
     for (let i = 0; i < doc.expositions.length; i++) {
       expoId = doc.expositions[i]
@@ -91,7 +95,8 @@ router.get('/museums/:museumId/:expositionId', (req, res) => {
       name: doc.name,
       room: doc.room,
       descriptions: doc.descriptions,
-      works: []
+      works: [],
+      image: doc.image
     }
     for (let i = 0; i < doc.works.length; i++) {
       artworkId = doc.works[i]
