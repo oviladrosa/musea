@@ -126,15 +126,18 @@ pipeline {
         parallel {
           stage('Stage') {
             when {
-              branch 'development' 
+              branch 'develop' 
             }
             steps {
-            echo 'deploy to development' 
+                echo 'deploy to development' 
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'Heroku Git Login', usernameVariable: 'aniol.carbo@estudiantat.upc.edu', passwordVariable: 'herokuPassword!']]) {
+                  sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@git.heroku.com/myapp-production.git HEAD:refs/heads/master')
+              }
             }
           }
           stage('Prod') {
             when {
-              branch 'main' 
+              branch 'master' 
             }
             steps {
             echo 'deploy to master' 
