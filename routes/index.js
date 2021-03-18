@@ -21,7 +21,8 @@ const MuseumSchema = new Schema({
   country: String,
   location: Array,
   expositions: Array,
-  descriptions: Object
+  descriptions: Object,
+  image: String
 })
 const Model = mongoose.model
 const Museum = Model('museums', MuseumSchema) // first parameter is the name of the collection
@@ -31,7 +32,8 @@ const ExpositionSchema = new Schema({
   name: String,
   room: String,
   descriptions: Object,
-  works: Array
+  works: Array,
+  image: String
 })
 const Exposition = Model('expositions', ExpositionSchema)
 
@@ -41,9 +43,10 @@ const WorkSchema = new Schema({
   author: String,
   descriptions: Object,
   score: Number,
-  type: String
+  type: String,
+  image: String
 })
-const Work = Model('works', WorkSchema)
+const Work = Model('artworks', WorkSchema)
 
 router.get('/museums', (req, res) => {
   // eslint-disable-next-line array-callback-return
@@ -58,7 +61,26 @@ router.get('/museums/:museumId', (req, res) => {
   // eslint-disable-next-line array-callback-return
   Museum.findById(id, (err, doc) => {
     if (err) console.log(err)
-    res.json({ museum: doc })
+    let expoId
+    const result = {
+      _id: doc._id,
+      name: doc.name,
+      address: doc.address,
+      city: doc.city,
+      country: doc.country,
+      location: doc.location,
+      expositions: [],
+      descriptions: doc.descriptions,
+      image: doc.image
+    }
+    for (let i = 0; i < doc.expositions.length; i++) {
+      expoId = doc.expositions[i]
+      Exposition.findById(expoId, (error, expo) => {
+        if (error) console.log(error)
+        result.expositions.push(expo)
+        if (i === result.expositions.length - 1) res.json({ museum: result })
+      })
+    }
   })
 })
 
@@ -67,7 +89,23 @@ router.get('/museums/:museumId/:expositionId', (req, res) => {
   // eslint-disable-next-line array-callback-return
   Exposition.findById(id, (err, doc) => {
     if (err) console.log(err)
-    res.json({ exposition: doc })
+    let artworkId
+    const result = {
+      _id: doc._id,
+      name: doc.name,
+      room: doc.room,
+      descriptions: doc.descriptions,
+      works: [],
+      image: doc.image
+    }
+    for (let i = 0; i < doc.works.length; i++) {
+      artworkId = doc.works[i]
+      Work.findById(artworkId, (error, work) => {
+        if (error) console.log(error)
+        result.works.push(work)
+        if (i === result.works.length - 1) res.json({ museum: result })
+      })
+    }
   })
 })
 

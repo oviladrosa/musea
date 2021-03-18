@@ -184,7 +184,7 @@ def commitInfo() {
 }
 
 def notifyDiscord(String msg, String img) {
-    msg = msg + "\n\n[SonarQube](http://10.4.41.141:9000/dashboard?id=my%3AmuseaApi)"
+    msg = msg + "\n\n[SonarQube](http://10.4.41.141:9000/dashboard?id=my%3AAPIMUSEA)"
         discordSend(
             webhookURL: "https://discord.com/api/webhooks/821385850637647974/ibFTmFlOpWGNQNZYo9K7T_wDr82k_3VS2w99iQQ7a1aSS1CWHuGBvta6qmbvBZMmBetC",
             title: "${currentBuild.currentResult} in ${env.JOB_NAME}",
