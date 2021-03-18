@@ -134,8 +134,11 @@ pipeline {
             }
             steps {
                 echo 'deploy to development' 
-                
-                  sh('git push https://aniol.carbo@estudiantat.upc.edu:herokuPassword!@git.heroku.com/musea-api.git HEAD:refs/heads/master')
+                (
+                  echo "https://aniol.carbo@estudiantat.upc.edu" 
+                  echo "herokuPassword!"
+                ) | heroku login
+                  sh('git push https://git.heroku.com/musea-api.git HEAD:refs/heads/master')
               
             }
           }
