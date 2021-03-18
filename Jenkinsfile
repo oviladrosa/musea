@@ -134,7 +134,7 @@ pipeline {
             }
             steps {
                 echo 'deploy to development' 
-                sh 'sudo snap install --classic heroku'
+                sh 'heroku login'
               
             }
           }
