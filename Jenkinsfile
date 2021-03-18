@@ -135,9 +135,9 @@ pipeline {
             steps {
                 echo 'deploy to development' 
                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'heroku',
-                    usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']
+                    usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']
                   ]){
-                  sh('git push https://$(USERNAME):$(PASSWORD)@git.heroku.com/musea-api.git master')
+                      sh('git push https://$(GIT_USERNAME):$(GIT_PASSWORD)@git.heroku.com/musea-api.git master')
                   }
             }
           }
