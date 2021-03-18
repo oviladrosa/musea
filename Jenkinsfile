@@ -134,7 +134,10 @@ pipeline {
             }
             steps {
                 echo 'deploy to development' 
-                sh 'snap install --classic heroku'
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'heroku', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
+                  sh 'git push https://${GIT_USERNAME}:${GIT_PASSWORD}@git.heroku.com/myapp-staging.git master'
+                }
+        }
               
             }
           }
