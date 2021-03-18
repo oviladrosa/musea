@@ -129,7 +129,7 @@ pipeline {
           stage('Stage') {
             when {
               expression {
-                env.BRANCH_NAME == 'develop'
+                env.GIT_BRANCH == 'origin/develop'
               }
             }
             steps {
