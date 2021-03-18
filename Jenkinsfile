@@ -134,14 +134,16 @@ pipeline {
             }
             steps {
                 echo 'deploy to development' 
-                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'Heroku Git Login', usernameVariable: 'aniol.carbo@estudiantat.upc.edu', passwordVariable: 'herokuPassword!']]) {
-                  sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@git.heroku.com/myapp-production.git HEAD:refs/heads/master')
-              }
+                
+                  sh('git push https://aniol.carbo@estudiantat.upc.edu:herokuPassword!@git.heroku.com/musea-api.git HEAD:refs/heads/master')
+              
             }
           }
           stage('Prod') {
             when {
-              branch 'master' 
+              expression {
+                env.GIT_BRANCH == 'origin/master'
+              }
             }
             steps {
             echo 'deploy to master' 
