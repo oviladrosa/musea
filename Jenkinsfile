@@ -126,7 +126,7 @@ pipeline {
         parallel {
           stage('Stage') {
             when {
-              branch 'develop' 
+              env.branch == 'develop'
             }
             steps {
                 echo 'deploy to development' 
