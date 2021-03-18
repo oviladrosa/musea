@@ -93,6 +93,7 @@ pipeline {
                             currentBuild.result = 'UNSTABLE'
                         }  
                 }
+                echo "${env.BRANCH_NAME}&&${BRANCH_NAME}"
               }
             }
        post {
