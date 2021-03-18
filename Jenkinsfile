@@ -14,6 +14,7 @@ pipeline {
       steps {
          echo 'Starting building test docker image'
          sh 'npm install'
+         echo "${env.BRANCH_NAME}"
       }
       post {
         success {
@@ -93,7 +94,6 @@ pipeline {
                             currentBuild.result = 'UNSTABLE'
                         }  
                 }
-                echo "${env.BRANCH_NAME}&&${BRANCH_NAME}"
               }
             }
        post {
