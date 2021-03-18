@@ -15,6 +15,7 @@ pipeline {
          echo 'Starting building test docker image'
          sh 'npm install'
          echo "${env.BRANCH_NAME}"
+         echo "${env.GIT_BRANCH}"
       }
       post {
         success {
