@@ -127,7 +127,7 @@ pipeline {
           stage('Stage') {
             when {
               expression {
-                return true
+                env.BRANCH_NAME == 'develop'
               }
             }
             steps {
