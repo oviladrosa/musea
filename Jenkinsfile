@@ -52,7 +52,7 @@ pipeline {
             echo 'Build marked as unstable'
         }
         failure {
-            echo 'Test execution failed'
+            echo 'Test execution failed :('
         }
         unsuccessful {
             script {
